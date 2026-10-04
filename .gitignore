@@ -1,0 +1,43 @@
+# The operator's local runbook. It is Chinese, it is addressed to the person doing the
+# publishing, and it necessarily names the local tree it operates on, so it is NOT part of
+# the public artifact. verify_package.py asserts that this entry exists and that
+# `git check-ignore` really ignores the file.
+PUBLISH_RUNBOOK.md
+
+# Byte-compiled and cached artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Run artifacts: a fresh clone generates its own. The recorded artifacts that back the
+# published findings live in findings/raw/ and ARE committed, deliberately.
+harness/runs/
+
+# The audited upstream checkouts, fetched by scripts/fetch_targets.py. Pinned third-party
+# code is not vendored into this repository.
+hub/
+
+# Local environments
+.venv/
+venv/
+env/
+
+# Credentials: nothing in this repository needs one, and nothing here may acquire one.
+.env
+.env.*
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+.git-credentials
+
+# Editor and OS noise
+.vscode/
+.idea/
+*.swp
+*~
+Thumbs.db
+Desktop.ini

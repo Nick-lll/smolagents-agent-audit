@@ -1,0 +1,1461 @@
+{
+  "harness": "smolagents/audit/three_state_audit.py",
+  "started_utc": "2026-10-04T03:29:30Z",
+  "pinned_revision": {
+    "commit": "c30b115286e000e98711fae5e85993547b73d826",
+    "commit_date": "2026-09-30T07:07:22+02:00",
+    "commit_subject": "fix(ci): harden GitHub Actions workflows (#2558) (#2868)",
+    "describe": "v1.0.0-936-gc30b115",
+    "dirty": "?? audit/",
+    "packages_audited": {
+      "src/smolagents/agents.py": "d4f40408e0e55dc4ad20b6a92bb166285b6624dfbdce6ef55b511b7bd1e94c33",
+      "src/smolagents/models.py": "806c1ec195b56324704cf82cb84b089325a3ce293e13168fc189dbfa2c21751c",
+      "src/smolagents/memory.py": "fab02dbe39b4f1404f4d02403d61d2ef3571bb84010529efb01147cef2425df8",
+      "src/smolagents/monitoring.py": "a0e398ec4311c7111756273023ed726bdfa2f011c5abc65529343d739cf411a2",
+      "src/smolagents/local_python_executor.py": "78e00312510b2d96fb5265d66d91f35fc7bd49e7c345b1e79f652a92b00a7cfa",
+      "src/smolagents/default_tools.py": "82de8b3999e6d18e6b864109e64c9bf67fb6fe07b45e39f6d0690f9870b3bb54",
+      "src/smolagents/tools.py": "ffaba38a0a4fac36201f22c6278a424cdf6902ea267bfe440c83b13777cf3bd9"
+    },
+    "pinned_commit_required": "c30b115286e000e98711fae5e85993547b73d826",
+    "pinned_commit_found": "c30b115286e000e98711fae5e85993547b73d826",
+    "upstream_repository": "https://github.com/huggingface/smolagents"
+  },
+  "environment": {
+    "python": "3.13.13 (tags/v3.13.13:01104ce, Apr  7 2026, 19:25:48) [MSC v.1944 64 bit (AMD64)]",
+    "python_executable": "C:\\Users\\123\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "processor_count": 16,
+    "smolagents_module": "E:\\zeus_public_audit\\smolagents\\src\\smolagents\\__init__.py",
+    "repo_root": "E:\\zeus_public_audit\\smolagents",
+    "packages": {
+      "smolagents": "1.27.0.dev0",
+      "huggingface-hub": "1.32.0",
+      "requests": "2.33.1",
+      "rich": "15.0.0",
+      "jinja2": "3.1.6",
+      "pillow": "12.2.0",
+      "python-dotenv": "1.2.2"
+    },
+    "network_used": false,
+    "api_key_used": false,
+    "gpu_used": false
+  },
+  "schema_self_test": {
+    "subject": "three-state schema self-test: audits the harness, not the target",
+    "all_passed": true,
+    "criteria_count": 6,
+    "control_count": 12,
+    "broken_control_count": 0,
+    "criteria": [
+      {
+        "name": "ST1_reader_control_that_raises_is_CONTROL_ERROR",
+        "claim": "a control whose body raises is CONTROL_ERROR and keeps the original traceback",
+        "verdict_rule": "status is CONTROL_ERROR, exception type recorded, traceback retained",
+        "passed": true,
+        "defect_demonstrated": true,
+        "correction_rejected_claim": true,
+        "measured": {},
+        "inferred": "",
+        "correct_implementation": "",
+        "evidence_sites": [],
+        "controls": [
+          {
+            "name": "st1",
+            "role": "demonstrates_the_defect",
+            "kind": "reader",
+            "status": "PASS",
+            "checked": "reader control body raises RuntimeError",
+            "expected_result": true,
+            "observed": {
+              "inner_status": "CONTROL_ERROR",
+              "inner_exception": "RuntimeError"
+            },
+            "expectation": "the assertion's result must be True",
+            "precondition": "",
+            "precondition_ok": null,
+            "mutation": "",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          },
+          {
+            "name": "st1b",
+            "role": "rejects_the_defect",
+            "kind": "reader",
+            "status": "PASS",
+            "checked": "the same probe would be False if the schema reported PASS for a raising body",
+            "expected_result": true,
+            "observed": {
+              "inner_status_seen": "CONTROL_ERROR"
+            },
+            "expectation": "the assertion's result must be True",
+            "precondition": "",
+            "precondition_ok": null,
+            "mutation": "",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          }
+        ]
+      },
+      {
+        "name": "ST2_false_precondition_is_CONTROL_PRECONDITION_FAILED",
+        "claim": "a STATE control with a false precondition reports CONTROL_PRECONDITION_FAILED and does not run its body",
+        "verdict_rule": "status is CONTROL_PRECONDITION_FAILED and observed is None",
+        "passed": true,
+        "defect_demonstrated": true,
+        "correction_rejected_claim": true,
+        "measured": {},
+        "inferred": "",
+        "correct_implementation": "",
+        "evidence_sites": [],
+        "controls": [
+          {
+            "name": "st2",
+            "role": "demonstrates_the_defect",
+            "kind": "reader",
+            "status": "PASS",
+            "checked": "STATE control with precondition false",
+            "expected_result": true,
+            "observed": {
+              "inner_status": "CONTROL_PRECONDITION_FAILED",
+              "inner_exception": ""
+            },
+            "expectation": "the assertion's result must be True",
+            "precondition": "",
+            "precondition_ok": null,
+            "mutation": "",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          },
+          {
+            "name": "st2b",
+            "role": "rejects_the_defect",
+            "kind": "reader",
+            "status": "PASS",
+            "checked": "the classification is not PASS and not FAIL",
+            "expected_result": true,
+            "observed": {
+              "inner_status_seen": "CONTROL_PRECONDITION_FAILED"
+            },
+            "expectation": "the assertion's result must be True",
+            "precondition": "",
+            "precondition_ok": null,
+            "mutation": "",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          }
+        ]
+      },
+      {
+        "name": "ST3_mismatched_expectation_is_FAIL",
+        "claim": "a control whose assertion contradicts its expectation reports FAIL",
+        "verdict_rule": "status is FAIL",
+        "passed": true,
+        "defect_demonstrated": true,
+        "correction_rejected_claim": true,
+        "measured": {},
+        "inferred": "",
+        "correct_implementation": "",
+        "evidence_sites": [],
+        "controls": [
+          {
+            "name": "st3",
+            "role": "demonstrates_the_defect",
+            "kind": "reader",
+            "status": "PASS",
+            "checked": "assertion says False but expected_result is True",
+            "expected_result": true,
+            "observed": "observed",
+            "expectation": "the assertion's result must be True",
+            "precondition": "",
+            "precondition_ok": null,
+            "mutation": "",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          },
+          {
+            "name": "st3b",
+            "role": "rejects_the_defect",
+            "kind": "reader",
+            "status": "PASS",
+            "checked": "the same shape with a matching expectation is not FAIL",
+            "expected_result": true,
+            "observed": "observed",
+            "expectation": "the assertion's result must be True",
+            "precondition": "",
+            "precondition_ok": null,
+            "mutation": "",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          }
+        ]
+      },
+      {
+        "name": "ST4_matching_expectation_is_PASS",
+        "claim": "a control whose assertion matches its expectation reports PASS",
+        "verdict_rule": "status is PASS",
+        "passed": true,
+        "defect_demonstrated": true,
+        "correction_rejected_claim": true,
+        "measured": {},
+        "inferred": "",
+        "correct_implementation": "",
+        "evidence_sites": [],
+        "controls": [
+          {
+            "name": "st4",
+            "role": "demonstrates_the_defect",
+            "kind": "reader",
+            "status": "PASS",
+            "checked": "assertion says True and expected_result is True",
+            "expected_result": true,
+            "observed": "observed",
+            "expectation": "the assertion's result must be True",
+            "precondition": "",
+            "precondition_ok": null,
+            "mutation": "",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          },
+          {
+            "name": "st4b",
+            "role": "rejects_the_defect",
+            "kind": "reader",
+            "status": "PASS",
+            "checked": "flipping the expectation flips the status away from PASS",
+            "expected_result": true,
+            "observed": "observed",
+            "expectation": "the assertion's result must be True",
+            "precondition": "",
+            "precondition_ok": null,
+            "mutation": "",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          }
+        ]
+      },
+      {
+        "name": "ST5_non_boolean_assertion_is_CONTROL_ERROR",
+        "claim": "a control whose second element is not a bool is refused, not interpreted",
+        "verdict_rule": "status is CONTROL_ERROR with a TypeError recorded",
+        "passed": true,
+        "defect_demonstrated": true,
+        "correction_rejected_claim": true,
+        "measured": {},
+        "inferred": "",
+        "correct_implementation": "",
+        "evidence_sites": [],
+        "controls": [
+          {
+            "name": "st5",
+            "role": "demonstrates_the_defect",
+            "kind": "reader",
+            "status": "PASS",
+            "checked": "second element is a string instead of a bool",
+            "expected_result": true,
+            "observed": "observed",
+            "expectation": "the assertion's result must be True",
+            "precondition": "",
+            "precondition_ok": null,
+            "mutation": "",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          },
+          {
+            "name": "st5b",
+            "role": "rejects_the_defect",
+            "kind": "reader",
+            "status": "PASS",
+            "checked": "a genuine bool is not refused",
+            "expected_result": true,
+            "observed": "observed",
+            "expectation": "the assertion's result must be True",
+            "precondition": "",
+            "precondition_ok": null,
+            "mutation": "",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          }
+        ]
+      },
+      {
+        "name": "ST6_PASS_requires_both_roles",
+        "claim": "a criterion holding only defect-demonstrating controls is not PASS: without a should-fail control the claim is unsupported",
+        "verdict_rule": "criterion.passed is False and correction_rejected_claim is False",
+        "passed": true,
+        "defect_demonstrated": true,
+        "correction_rejected_claim": true,
+        "measured": {},
+        "inferred": "",
+        "correct_implementation": "",
+        "evidence_sites": [],
+        "controls": [
+          {
+            "name": "st6",
+            "role": "demonstrates_the_defect",
+            "kind": "reader",
+            "status": "PASS",
+            "checked": "criterion with a single DEMONSTRATES_THE_DEFECT control",
+            "expected_result": true,
+            "observed": "observed",
+            "expectation": "the assertion's result must be True",
+            "precondition": "",
+            "precondition_ok": null,
+            "mutation": "",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          },
+          {
+            "name": "st6b",
+            "role": "rejects_the_defect",
+            "kind": "reader",
+            "status": "PASS",
+            "checked": "adding the missing role makes the same criterion PASS",
+            "expected_result": true,
+            "observed": "observed",
+            "expectation": "the assertion's result must be True",
+            "precondition": "",
+            "precondition_ok": null,
+            "mutation": "",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          }
+        ]
+      }
+    ]
+  },
+  "pristine_revision_check": {
+    "pristine": true,
+    "methods_checked": {
+      "A_re_raise_in_provide_final_answer": "clean",
+      "C_incomplete_state": "clean",
+      "D_zero_budget_guard": "clean",
+      "E_generation_failure_attribute": "clean"
+    }
+  },
+  "audit": {
+    "subject": "huggingface/smolagents, failure-disguised-as-success audit",
+    "all_passed": true,
+    "criteria_count": 4,
+    "control_count": 11,
+    "broken_control_count": 0,
+    "criteria": [
+      {
+        "name": "C1_model_failure_during_fallback_answer_is_swallowed",
+        "claim": "When the model endpoint fails on the call that produces the fallback final answer, run() returns normally with the error text as the answer instead of raising, and no part of the returned result identifies a generation failure.",
+        "verdict_rule": "PASS requires both: (a) on the pinned revision the run returns without raising and its output contains the raw error text; (b) on the corrected variant the same failure raises out of run().",
+        "passed": true,
+        "defect_demonstrated": true,
+        "correction_rejected_claim": true,
+        "measured": {
+          "pinned_revision": {
+            "agent_class": "ToolCallingAgent",
+            "max_steps": 1,
+            "raised": null,
+            "output": [
+              {
+                "type": "text",
+                "text": "Error in generating final LLM output: Connection reset by peer (simulated endpoint death)"
+              }
+            ],
+            "output_repr": "[{'type': 'text', 'text': 'Error in generating final LLM output: Connection reset by peer (simulated endpoint death)'}]",
+            "output_type": "list",
+            "state": "max_steps_error",
+            "token_usage_is_none": true,
+            "step_errors": [
+              null,
+              null,
+              {
+                "type": "AgentMaxStepsError",
+                "message": "Reached max steps."
+              }
+            ],
+            "is_final_answer_flags": [
+              null,
+              false,
+              false
+            ],
+            "failure_reason_in_state": false,
+            "failure_reason_in_step_errors": false,
+            "failure_reason_in_output": true,
+            "generate_calls": 2,
+            "call_purposes": [
+              "action_step_prompt",
+              "fallback_answer_prompt"
+            ]
+          },
+          "pinned_revision_code_agent": {
+            "agent_class": "CodeAgent",
+            "max_steps": 1,
+            "raised": null,
+            "output": [
+              {
+                "type": "text",
+                "text": "Error in generating final LLM output: Connection reset by peer (simulated endpoint death)"
+              }
+            ],
+            "output_repr": "[{'type': 'text', 'text': 'Error in generating final LLM output: Connection reset by peer (simulated endpoint death)'}]",
+            "state": "max_steps_error",
+            "step_errors": [
+              null,
+              null,
+              {
+                "type": "AgentMaxStepsError",
+                "message": "Reached max steps."
+              }
+            ],
+            "failure_reason_in_output": true,
+            "generate_calls": 2
+          },
+          "mutant A": {
+            "applied": true,
+            "note": "edited E:\\zeus_public_audit\\smolagents\\src\\smolagents\\agents.py:849",
+            "mutant": "A",
+            "summary": "MultiStepAgent.provide_final_answer: re-raise a model failure instead of returning the error text as the user-visible answer",
+            "asserts": "an AgentGenerationError raised by provide_final_answer() reaches the caller of run() instead of a ChatMessage whose text is the error",
+            "class": "MultiStepAgent",
+            "methods": [
+              "provide_final_answer"
+            ],
+            "edit_locations": [
+              "E:\\zeus_public_audit\\smolagents\\src\\smolagents\\agents.py:849"
+            ],
+            "source_lines_before": 44,
+            "source_lines_after": 46,
+            "observed": {
+              "agent_class": "ToolCallingAgent",
+              "max_steps": 1,
+              "raised": "AgentGenerationError: Error in generating final LLM output:\nConnection reset by peer (simulated endpoint death)",
+              "output": null,
+              "output_repr": null,
+              "output_type": null,
+              "state": null,
+              "failure_reason_in_state": false,
+              "failure_reason_in_step_errors": false,
+              "failure_reason_in_output": false,
+              "generate_calls": 2,
+              "call_purposes": [
+                "action_step_prompt",
+                "fallback_answer_prompt"
+              ]
+            }
+          }
+        },
+        "inferred": "Not inferred: both the swallowed outcome and its disappearance under the correction are executed. The claim that a caller cannot distinguish this from a real answer follows from the measured output text alone.",
+        "correct_implementation": "provide_final_answer() should let the generation failure out of the framework the same way an action-step generation failure does (_run_stream re-raises AgentGenerationError, and tests/test_agents.py::test_generation_errors_are_raised asserts that). A caller must be able to tell 'the agent used its remaining budget' from 'the model never answered'.",
+        "evidence_sites": [
+          "src/smolagents/agents.py: provide_final_answer (except Exception -> ChatMessage with error text)",
+          "src/smolagents/agents.py: _handle_max_steps_reached (the only caller)",
+          "src/smolagents/agents.py: _run_stream (re-raises AgentGenerationError for action steps)"
+        ],
+        "controls": [
+          {
+            "name": "C1a_pinned_run_returns_error_text_as_the_answer",
+            "role": "demonstrates_the_defect",
+            "kind": "state",
+            "status": "PASS",
+            "checked": "on the pinned revision, the dead endpoint produces a normal return whose output is the error text",
+            "expected_result": true,
+            "observed": {
+              "raised": null,
+              "output_repr": "[{'type': 'text', 'text': 'Error in generating final LLM output: Connection reset by peer (simulated endpoint death)'}]",
+              "state": "max_steps_error",
+              "call_purposes": [
+                "action_step_prompt",
+                "fallback_answer_prompt"
+              ]
+            },
+            "expectation": "assertion is True on the pinned revision (defect reproduces)",
+            "precondition": "the pinned revision still reaches provide_final_answer() and still swallows the failure there (run raises nothing and generate() was called twice)",
+            "precondition_ok": true,
+            "mutation": "",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          },
+          {
+            "name": "C1b_pinned_run_records_no_machine_readable_failure",
+            "role": "demonstrates_the_defect",
+            "kind": "state",
+            "status": "PASS",
+            "checked": "no field of the returned RunResult names the generation failure",
+            "expected_result": true,
+            "observed": {
+              "failure_reason_in_state": false,
+              "failure_reason_in_step_errors": false,
+              "failure_reason_in_output": true,
+              "step_errors": [
+                null,
+                null,
+                {
+                  "type": "AgentMaxStepsError",
+                  "message": "Reached max steps."
+                }
+              ]
+            },
+            "expectation": "the assertion's result must be True",
+            "precondition": "same precondition as C1a",
+            "precondition_ok": true,
+            "mutation": "",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          },
+          {
+            "name": "C1c_correction_raises_instead_of_answering",
+            "role": "rejects_the_defect",
+            "kind": "reader",
+            "status": "PASS",
+            "checked": "with mutant A the same dead endpoint raises out of run() and yields no output",
+            "expected_result": true,
+            "observed": {
+              "raised": "AgentGenerationError: Error in generating final LLM output:\nConnection reset by peer (simulated endpoint death)",
+              "output": null,
+              "output_is_none": true
+            },
+            "expectation": "assertion is True with the correction in place",
+            "precondition": "",
+            "precondition_ok": null,
+            "mutation": "MultiStepAgent.provide_final_answer: re-raise a model failure instead of returning the error text as the user-visible answer",
+            "mutation_locations": [
+              "edited E:\\zeus_public_audit\\smolagents\\src\\smolagents\\agents.py:849"
+            ],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          }
+        ]
+      },
+      {
+        "name": "C2_fallback_failure_is_reported_as_a_step_limit_error",
+        "claim": "The returned RunResult.state cannot distinguish 'the step budget ran out' from 'the model never answered': both are reported as max_steps_error while the failure reason survives only inside the answer text.",
+        "verdict_rule": "PASS requires both: (a) on the pinned revision state is max_steps_error and no step error names the failure; (b) on the corrected variant the failure becomes visible in state or in a step error.",
+        "passed": true,
+        "defect_demonstrated": true,
+        "correction_rejected_claim": true,
+        "measured": {
+          "pinned_revision": {
+            "agent_class": "ToolCallingAgent",
+            "max_steps": 1,
+            "raised": null,
+            "output": [
+              {
+                "type": "text",
+                "text": "Error in generating final LLM output: Connection reset by peer (simulated endpoint death)"
+              }
+            ],
+            "output_repr": "[{'type': 'text', 'text': 'Error in generating final LLM output: Connection reset by peer (simulated endpoint death)'}]",
+            "output_type": "list",
+            "state": "max_steps_error",
+            "token_usage_is_none": true,
+            "step_errors": [
+              null,
+              null,
+              {
+                "type": "AgentMaxStepsError",
+                "message": "Reached max steps."
+              }
+            ],
+            "is_final_answer_flags": [
+              null,
+              false,
+              false
+            ],
+            "failure_reason_in_state": false,
+            "failure_reason_in_step_errors": false,
+            "failure_reason_in_output": true,
+            "generate_calls": 2,
+            "call_purposes": [
+              "action_step_prompt",
+              "fallback_answer_prompt"
+            ]
+          },
+          "mutants": {
+            "applied": true,
+            "note": "edited E:\\zeus_public_audit\\smolagents\\src\\smolagents\\agents.py:849",
+            "mutant": "E",
+            "summary": "MultiStepAgent.provide_final_answer plus _handle_max_steps_reached: record the generation failure on the step that consumed the remaining budget, and report it in the run state, so the reason for the fallback answer survives in the run's own bookkeeping instead of only inside the answer text",
+            "asserts": "when the fallback answer could not be generated, a step error identifies the failure",
+            "class": "MultiStepAgent",
+            "methods": [
+              "provide_final_answer",
+              "_handle_max_steps_reached"
+            ],
+            "edit_locations": [
+              "E:\\zeus_public_audit\\smolagents\\src\\smolagents\\agents.py:846",
+              "E:\\zeus_public_audit\\smolagents\\src\\smolagents\\agents.py:634"
+            ],
+            "source_lines_before": 57,
+            "source_lines_after": 67,
+            "observed": {
+              "agent_class": "ToolCallingAgent",
+              "max_steps": 1,
+              "raised": null,
+              "output": [
+                {
+                  "type": "text",
+                  "text": "Error in generating final LLM output: Connection reset by peer (simulated endpoint death)"
+                }
+              ],
+              "output_repr": "[{'type': 'text', 'text': 'Error in generating final LLM output: Connection reset by peer (simulated endpoint death)'}]",
+              "output_type": "list",
+              "state": "success",
+              "token_usage_is_none": true,
+              "step_errors": [
+                null,
+                null,
+                {
+                  "type": "AgentError",
+                  "message": "ConnectionError: Connection reset by peer (simulated endpoint death)"
+                }
+              ],
+              "is_final_answer_flags": [
+                null,
+                false,
+                false
+              ],
+              "failure_reason_in_state": false,
+              "failure_reason_in_step_errors": true,
+              "failure_reason_in_output": true,
+              "generate_calls": 2,
+              "call_purposes": [
+                "action_step_prompt",
+                "fallback_answer_prompt"
+              ]
+            }
+          }
+        },
+        "inferred": "The step-limit label itself is intended behaviour. The audited property is that the label is the only machine-readable signal and it does not mention the failure that actually prevented an answer.",
+        "correct_implementation": "state should be derived from whether the run produced an answer, or the generation failure should be recorded on the step that consumed the remaining budget; either way a consumer reading only state/step errors must be able to learn that the model failed.",
+        "evidence_sites": [
+          "src/smolagents/agents.py: run() state computation reads only the last step's error",
+          "src/smolagents/agents.py: _handle_max_steps_reached records only AgentMaxStepsError"
+        ],
+        "controls": [
+          {
+            "name": "C2a_state_says_step_limit_and_nothing_else",
+            "role": "demonstrates_the_defect",
+            "kind": "state",
+            "status": "PASS",
+            "checked": "on the pinned revision the run reports max_steps_error with the failure only inside the answer text",
+            "expected_result": true,
+            "observed": {
+              "state": "max_steps_error",
+              "failure_reason_in_state": false,
+              "failure_reason_in_step_errors": false,
+              "step_errors": [
+                null,
+                null,
+                {
+                  "type": "AgentMaxStepsError",
+                  "message": "Reached max steps."
+                }
+              ]
+            },
+            "expectation": "the assertion's result must be True",
+            "precondition": "the pinned revision still reports max_steps_error for this scenario",
+            "precondition_ok": true,
+            "mutation": "",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          },
+          {
+            "name": "C2b_correction_makes_the_failure_reachable",
+            "role": "rejects_the_defect",
+            "kind": "reader",
+            "status": "PASS",
+            "checked": "with mutant A the failure reason reaches the caller in the raised exception",
+            "expected_result": true,
+            "observed": {
+              "raised": "AgentGenerationError: Error in generating final LLM output:\nConnection reset by peer (simulated endpoint death)",
+              "no_longer_silent": true
+            },
+            "expectation": "assertion is True with the correction in place",
+            "precondition": "",
+            "precondition_ok": null,
+            "mutation": "MultiStepAgent.provide_final_answer: re-raise a model failure instead of returning the error text as the user-visible answer",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          },
+          {
+            "name": "C2c_correction_makes_the_reason_reachable",
+            "role": "rejects_the_defect",
+            "kind": "reader",
+            "status": "PASS",
+            "checked": "with mutant E the failure reason appears in the returned state or in a step error",
+            "expected_result": true,
+            "observed": {
+              "state_with_correction": "success",
+              "step_errors_with_correction": [
+                null,
+                null,
+                {
+                  "type": "AgentError",
+                  "message": "ConnectionError: Connection reset by peer (simulated endpoint death)"
+                }
+              ],
+              "failure_visible_with_correction": true
+            },
+            "expectation": "assertion is True with the correction in place",
+            "precondition": "",
+            "precondition_ok": null,
+            "mutation": "MultiStepAgent.provide_final_answer plus _handle_max_steps_reached: record the generation failure on the step that consumed the remaining budget, and report it in the run state, so the reason for the fallback answer survives in the run's own bookkeeping instead of only inside the answer text",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          }
+        ]
+      },
+      {
+        "name": "C3_run_without_an_answer_reports_success",
+        "claim": "A run whose final answer carries nothing (final_answer with no usable payload, or a None answer) returns output=None together with state='success', so a caller that trusts the status has no way to learn that the agent answered nothing.",
+        "verdict_rule": "PASS requires both: (a) on the pinned revision the None-answer run has output None and state success; (b) on the corrected variant such a run is not labelled success.",
+        "passed": true,
+        "defect_demonstrated": true,
+        "correction_rejected_claim": true,
+        "measured": {
+          "tool_none_answer": {
+            "agent_class": "ToolCallingAgent",
+            "payload": "None",
+            "output": null,
+            "output_repr": "None",
+            "output_is_none": true,
+            "state": "success",
+            "step_errors": [
+              null,
+              null
+            ],
+            "is_final_answer_flags": [
+              null,
+              true
+            ],
+            "run_steps": 2
+          },
+          "code_none_answer": {
+            "agent_class": "CodeAgent",
+            "payload": "None",
+            "output": null,
+            "output_repr": "None",
+            "output_is_none": true,
+            "state": "success",
+            "step_errors": [
+              null,
+              null
+            ],
+            "is_final_answer_flags": [
+              null,
+              true
+            ],
+            "run_steps": 2
+          },
+          "tool_empty_string_answer": {
+            "agent_class": "ToolCallingAgent",
+            "payload": "''",
+            "output": "",
+            "output_repr": "''",
+            "output_is_none": false,
+            "state": "success",
+            "step_errors": [
+              null,
+              null
+            ],
+            "is_final_answer_flags": [
+              null,
+              true
+            ],
+            "run_steps": 2
+          },
+          "control_real_answer": {
+            "agent_class": "ToolCallingAgent",
+            "payload": "'5'",
+            "output": "5",
+            "output_repr": "'5'",
+            "output_is_none": false,
+            "state": "success",
+            "step_errors": [
+              null,
+              null
+            ],
+            "is_final_answer_flags": [
+              null,
+              true
+            ],
+            "run_steps": 2
+          },
+          "mutant C": {
+            "applied": true,
+            "note": "edited E:\\zeus_public_audit\\smolagents\\src\\smolagents\\agents.py:849",
+            "mutant": "C",
+            "summary": "MultiStepAgent.run: a run whose final answer is None is not labelled success",
+            "asserts": "RunResult.state is not \"success\" when RunResult.output is None",
+            "class": "MultiStepAgent",
+            "methods": [
+              "run"
+            ],
+            "edit_locations": [
+              "E:\\zeus_public_audit\\smolagents\\src\\smolagents\\agents.py:523"
+            ],
+            "source_lines_before": 103,
+            "source_lines_after": 107,
+            "observed": {
+              "agent_class": "ToolCallingAgent",
+              "payload": "None",
+              "output": null,
+              "output_repr": "None",
+              "output_is_none": true,
+              "state": "incomplete",
+              "step_errors": [
+                null,
+                null
+              ],
+              "is_final_answer_flags": [
+                null,
+                true
+              ],
+              "run_steps": 2
+            }
+          }
+        },
+        "inferred": "That None is never a legitimate answer is a judgement about the library's contract, not a measurement: an agent could in principle answer None. What is measured is the conjunction output=None with state='success' and no step error, which is what makes the status uninformative.",
+        "correct_implementation": "run() should decide its completion state from whether an answer was produced (for example state='incomplete' when output is None), or the framework should refuse a final_answer call with no payload; a status field must not read 'success' when nothing was answered.",
+        "evidence_sites": [
+          "src/smolagents/agents.py: run() state computation ignores the answer",
+          "src/smolagents/default_tools.py: FinalAnswerTool.forward returns its argument unchanged",
+          "src/smolagents/agents.py: ToolCallingAgent._step_stream marks is_final_answer purely by tool name"
+        ],
+        "controls": [
+          {
+            "name": "C3a_pinned_success_label_with_none_answer",
+            "role": "demonstrates_the_defect",
+            "kind": "state",
+            "status": "PASS",
+            "checked": "on the pinned revision output None comes with state success and no step error",
+            "expected_result": true,
+            "observed": {
+              "agent_class": "ToolCallingAgent",
+              "output_repr": "None",
+              "state": "success",
+              "step_errors": [
+                null,
+                null
+              ],
+              "is_final_answer_flags": [
+                null,
+                true
+              ],
+              "code_agent_same": {
+                "output_repr": "None",
+                "state": "success"
+              }
+            },
+            "expectation": "the assertion's result must be True",
+            "precondition": "the pinned revision still returns state='success' for a None answer",
+            "precondition_ok": true,
+            "mutation": "",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          },
+          {
+            "name": "C3b_control_the_label_does_track_a_real_answer",
+            "role": "demonstrates_the_defect",
+            "kind": "reader",
+            "status": "PASS",
+            "checked": "CONTROL: the same machinery labels a real answer success and keeps the answer, so the harness is not simply seeing a broken run",
+            "expected_result": true,
+            "observed": {
+              "real_answer_output": "'5'",
+              "real_answer_state": "success",
+              "empty_string_output": "''",
+              "empty_string_state": "success"
+            },
+            "expectation": "the assertion's result must be True",
+            "precondition": "",
+            "precondition_ok": null,
+            "mutation": "",
+            "mutation_locations": [],
+            "notes": "this control forbids reading C3a as a generic 'the run was broken' signal",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          },
+          {
+            "name": "C3c_correction_stops_calling_it_success",
+            "role": "rejects_the_defect",
+            "kind": "reader",
+            "status": "PASS",
+            "checked": "with mutant C the None-answer run is no longer labelled success",
+            "expected_result": true,
+            "observed": {
+              "state_with_correction": "incomplete",
+              "output_with_correction": "None"
+            },
+            "expectation": "assertion is True with the correction in place",
+            "precondition": "",
+            "precondition_ok": null,
+            "mutation": "MultiStepAgent.run: a run whose final answer is None is not labelled success",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          }
+        ]
+      },
+      {
+        "name": "C4_zero_step_budget_crashes_the_run",
+        "claim": "A zero step budget makes run() raise UnboundLocalError instead of producing the fallback answer, so the caller receives an internal variable name rather than an answer or an explicit error.",
+        "verdict_rule": "PASS requires both: (a) on the pinned revision max_steps=0 raises UnboundLocalError naming action_step, after the fallback model call already happened; (b) on the corrected variant the same configuration returns the fallback answer.",
+        "passed": true,
+        "defect_demonstrated": true,
+        "correction_rejected_claim": true,
+        "measured": {
+          "pinned_revision": {
+            "max_steps": 0,
+            "healthy_calls": 0,
+            "raised": "UnboundLocalError: cannot access local variable 'action_step' where it is not associated with a value",
+            "output": null,
+            "output_repr": null,
+            "output_is_none": true,
+            "state": null,
+            "generate_calls": 1,
+            "call_purposes": [
+              "fallback_answer_prompt"
+            ]
+          },
+          "pinned_revision_with_a_live_fallback_model": {
+            "max_steps": 0,
+            "healthy_calls": 1,
+            "raised": "UnboundLocalError: cannot access local variable 'action_step' where it is not associated with a value",
+            "output": null,
+            "output_repr": null,
+            "output_is_none": true,
+            "state": null,
+            "generate_calls": 1,
+            "call_purposes": [
+              "fallback_answer_prompt"
+            ]
+          },
+          "mutant D": {
+            "applied": true,
+            "note": "edited E:\\zeus_public_audit\\smolagents\\src\\smolagents\\agents.py:849",
+            "mutant": "D",
+            "summary": "MultiStepAgent._run_stream: with a zero step budget, do not re-yield an action_step that was never bound",
+            "asserts": "a zero step budget produces a final answer instead of UnboundLocalError",
+            "class": "MultiStepAgent",
+            "methods": [
+              "_run_stream"
+            ],
+            "edit_locations": [
+              "E:\\zeus_public_audit\\smolagents\\src\\smolagents\\agents.py:607"
+            ],
+            "source_lines_before": 72,
+            "source_lines_after": 76,
+            "observed": {
+              "max_steps": 0,
+              "healthy_calls": 1,
+              "raised": null,
+              "output": "Let me keep working.",
+              "output_repr": "'Let me keep working.'",
+              "output_is_none": false,
+              "state": "max_steps_error",
+              "generate_calls": 1,
+              "call_purposes": [
+                "fallback_answer_prompt"
+              ]
+            }
+          }
+        },
+        "inferred": "Whether a zero budget should be rejected at construction time is a design choice; not inferred is the crash itself, which is executed.",
+        "correct_implementation": "Either validate max_steps >= 1 where the agent is constructed, or do not re-yield an action_step that was never created; a caller must never see UnboundLocalError from the framework's own bookkeeping.",
+        "evidence_sites": [
+          "src/smolagents/agents.py: _run_stream yields action_step after the loop",
+          "src/smolagents/agents.py: run() declares max_steps = max_steps or self.max_steps"
+        ],
+        "controls": [
+          {
+            "name": "C4a_pinned_zero_budget_raises_UnboundLocalError",
+            "role": "demonstrates_the_defect",
+            "kind": "state",
+            "status": "PASS",
+            "checked": "on the pinned revision max_steps=0 raises UnboundLocalError naming action_step",
+            "expected_result": true,
+            "observed": {
+              "raised": "UnboundLocalError: cannot access local variable 'action_step' where it is not associated with a value",
+              "generate_calls": 1,
+              "call_purposes": [
+                "fallback_answer_prompt"
+              ],
+              "note": "the fallback model call already happened before the crash"
+            },
+            "expectation": "the assertion's result must be True",
+            "precondition": "the pinned revision still crashes with UnboundLocalError on action_step",
+            "precondition_ok": true,
+            "mutation": "",
+            "mutation_locations": [],
+            "notes": "",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          },
+          {
+            "name": "C4b_correction_returns_the_fallback_answer",
+            "role": "rejects_the_defect",
+            "kind": "reader",
+            "status": "PASS",
+            "checked": "with mutant D the zero-budget run returns the answer the model produced instead of crashing",
+            "expected_result": true,
+            "observed": {
+              "raised_with_correction": null,
+              "output_with_correction": "\"Let me keep working.\"",
+              "is_the_model_answer": true,
+              "call_purposes_with_correction": [
+                "fallback_answer_prompt"
+              ],
+              "state_with_correction": "max_steps_error"
+            },
+            "expectation": "assertion is True with the correction in place",
+            "precondition": "",
+            "precondition_ok": null,
+            "mutation": "MultiStepAgent._run_stream: with a zero step budget, do not re-yield an action_step that was never bound",
+            "mutation_locations": [
+              "edited E:\\zeus_public_audit\\smolagents\\src\\smolagents\\agents.py:849"
+            ],
+            "notes": "this control deliberately asserts the CONTENT of the answer, not merely that something was returned; an earlier version accepted the error text and would have passed for the wrong reason",
+            "exception_type": "",
+            "exception_message": "",
+            "traceback_text": ""
+          }
+        ]
+      }
+    ]
+  },
+  "discrimination": {
+    "definition": "For each guard that converts a failure into an ordinary value, replace it with a transparent re-raise and require at least one check to go red. A guard no check reacts to is a guard the audit cannot defend.",
+    "guards_examined": 1,
+    "sites": [
+      {
+        "id": "G1",
+        "location": "src/smolagents/agents.py: provide_final_answer",
+        "guard": "except Exception as e: return ChatMessage(... error text ...)",
+        "check": "C1a/C1b (pinned run returns the error text as the answer)",
+        "guard_replaced_by": "a transparent re-raise (mutant A: the failure is no longer converted into a value)",
+        "mutation": {
+          "mutant": "A",
+          "summary": "MultiStepAgent.provide_final_answer: re-raise a model failure instead of returning the error text as the user-visible answer",
+          "asserts": "an AgentGenerationError raised by provide_final_answer() reaches the caller of run() instead of a ChatMessage whose text is the error",
+          "class": "MultiStepAgent",
+          "methods": [
+            "provide_final_answer"
+          ],
+          "edit_locations": [
+            "E:\\zeus_public_audit\\smolagents\\src\\smolagents\\agents.py:849"
+          ],
+          "source_lines_before": 44,
+          "source_lines_after": 46,
+          "applied": true
+        },
+        "baseline_observation": {
+          "raised": null,
+          "output_repr": "[{'type': 'text', 'text': 'Error in generating final LLM output: Connection reset by peer (simulated endpoint death)'}]",
+          "state": "max_steps_error"
+        },
+        "corrected_observation": {
+          "raised": "AgentGenerationError: Error in generating final LLM output:\nConnection reset by peer (simulated endpoint death)",
+          "output_repr": "None",
+          "state": null
+        },
+        "check_green_with_guard_in_place": true,
+        "check_red_with_guard_replaced": true,
+        "verdict": "the guard is load-bearing: replacing it flips at least one check from green to red, so the check set discriminates this guard"
+      }
+    ],
+    "any_check_went_red": true,
+    "sites_with_no_discrimination": []
+  },
+  "false_alarms": [
+    {
+      "candidate": "a dead model on an ordinary action step is swallowed",
+      "verdict": "rejected: the framework raises AgentGenerationError out of run()",
+      "evidence": {
+        "raised": "AgentGenerationError: Error while generating output:\nConnection reset by peer (simulated endpoint death)",
+        "generate_calls": 1
+      }
+    },
+    {
+      "candidate": "a TypeError wiring bug in a model adapter is absorbed",
+      "verdict": "rejected: it is wrapped into AgentGenerationError and raised",
+      "evidence": {
+        "raised": "AgentGenerationError: Error while generating output:\nfalse_alarms.<locals>.WrongSignature.generate() got an unexpected keyword argument 'stop_sequences'"
+      }
+    },
+    {
+      "candidate": "malformed JSON in tool-call arguments corrupts the answer",
+      "verdict": "rejected: parse_json_if_needed returns unparsed text by design, and the docs plus tests/test_models.py::test_parse_json_if_needed pin that behaviour ('abc' -> 'abc'). The truncated fragment therefore arrives as a plain string, which the framework accepts as an answer because a bare string is a documented argument form for final_answer.",
+      "evidence": {
+        "parse_json_if_needed('{\"answer\": \"5')": "'{\"answer\": \"5'",
+        "documented": "docs/source/en/guided_tour.md plus the tool-calling prompt examples",
+        "test": "tests/test_models.py:312 test_parse_json_if_needed"
+      }
+    },
+    {
+      "candidate": "a tool failure is invisible and the run reports success anyway",
+      "verdict": "rejected: the tool failure is recorded on the step that hit it (AgentToolExecutionError), and feeding a failed tool call back to the model so it can retry is the ReAct design. The run state therefore describes the recovery, which is legitimate.",
+      "evidence": {
+        "state": "success",
+        "step_errors": [
+          null,
+          {
+            "type": "AgentToolExecutionError",
+            "message": "Error executing tool 'boom' with arguments {}: RuntimeError: backend unavailable\nPlease try again or use another tool"
+          },
+          null
+        ]
+      }
+    },
+    {
+      "candidate": "a boolean final_answer_check is inert, because the implementation wraps it in `assert` (a first code reading suggested assert would not fire on a False return)",
+      "verdict": "rejected by execution: assert fires on a False return, the guard's rejection is recorded as an AgentError on the step, and the run ends max_steps_error. The documented behaviour (log and continue the run) is what happens.",
+      "evidence": {
+        "guard_returns_false_for_bad_value": true,
+        "guard_errors_recorded": [
+          {
+            "type": "AgentError",
+            "message": "Check boolean_guard failed with error: "
+          }
+        ],
+        "guard_error_count": 4,
+        "state": "max_steps_error"
+      }
+    },
+    {
+      "candidate": "an interpreter timeout is silently absorbed and the run reports success",
+      "verdict": "rejected as a swallowed failure: the timeout becomes a step observation (AgentExecutionError 'Code execution exceeded the maximum execution time'), so the model sees it and the caller can read it from steps[].error. The residual issue is real but is not this defect class: the run-level state still says success, and the abandoned interpreter thread cannot be stopped (documented in local_python_executor.timeout).",
+      "evidence": {
+        "state": "success",
+        "output": "answered after a timeout",
+        "wall_seconds": 2.51,
+        "step_errors": [
+          null,
+          {
+            "type": "AgentExecutionError",
+            "message": "Code execution exceeded the maximum execution time of 1 seconds"
+          },
+          null
+        ],
+        "observations": [
+          "None",
+          "Execution logs:\ntick 0\ntick 1\n",
+          "Execution logs:\nLast output from code snippet:\nanswered after a timeout"
+        ],
+        "timed_out_code_wrote_its_marker": false
+      }
+    },
+    {
+      "candidate": "a mid-run endpoint death is swallowed as long as steps remain",
+      "verdict": "rejected: it raises AgentGenerationError out of run(). Only the fallback-answer call converts the same failure into a value.",
+      "evidence": {
+        "raised": "AgentGenerationError: Error while generating output:\nConnection reset by peer (simulated endpoint death)",
+        "generate_calls": 2
+      }
+    }
+  ],
+  "candidate_census": {
+    "definition": "every `except` handler in the shipped package that does not re-raise, because those are the only places a failure can be converted into a value, a log line or nothing",
+    "python_files_scanned": 18,
+    "except_handlers_total": 89,
+    "by_category": {
+      "re_raises_or_propagates": 52,
+      "returns_a_value": 13,
+      "swallows_with_pass": 9,
+      "logs_only": 4,
+      "other": 11
+    },
+    "candidate_sites": 37,
+    "sites": [
+      {
+        "file": "src/smolagents/_function_type_hints_utils.py",
+        "line": 429,
+        "category": "swallows_with_pass",
+        "except_type": "ModuleNotFoundError"
+      },
+      {
+        "file": "src/smolagents/agent_types.py",
+        "line": 279,
+        "category": "swallows_with_pass",
+        "except_type": "ModuleNotFoundError"
+      },
+      {
+        "file": "src/smolagents/agent_types.py",
+        "line": 105,
+        "category": "swallows_with_pass",
+        "except_type": "ModuleNotFoundError"
+      },
+      {
+        "file": "src/smolagents/agents.py",
+        "line": 849,
+        "category": "returns_a_value",
+        "except_type": "Exception"
+      },
+      {
+        "file": "src/smolagents/agents.py",
+        "line": 597,
+        "category": "other",
+        "except_type": "AgentError"
+      },
+      {
+        "file": "src/smolagents/cli.py",
+        "line": 140,
+        "category": "other",
+        "except_type": "Exception"
+      },
+      {
+        "file": "src/smolagents/default_tools.py",
+        "line": 539,
+        "category": "returns_a_value",
+        "except_type": "requests.exceptions.Timeout"
+      },
+      {
+        "file": "src/smolagents/default_tools.py",
+        "line": 541,
+        "category": "returns_a_value",
+        "except_type": "RequestException"
+      },
+      {
+        "file": "src/smolagents/default_tools.py",
+        "line": 543,
+        "category": "returns_a_value",
+        "except_type": "Exception"
+      },
+      {
+        "file": "src/smolagents/default_tools.py",
+        "line": 642,
+        "category": "returns_a_value",
+        "except_type": "Exception"
+      },
+      {
+        "file": "src/smolagents/local_python_executor.py",
+        "line": 513,
+        "category": "other",
+        "except_type": "ReturnException"
+      },
+      {
+        "file": "src/smolagents/local_python_executor.py",
+        "line": 1294,
+        "category": "other",
+        "except_type": "(ImportError, AttributeError)"
+      },
+      {
+        "file": "src/smolagents/local_python_executor.py",
+        "line": 1649,
+        "category": "returns_a_value",
+        "except_type": "FinalAnswerException"
+      },
+      {
+        "file": "src/smolagents/local_python_executor.py",
+        "line": 452,
+        "category": "returns_a_value",
+        "except_type": "BreakException"
+      },
+      {
+        "file": "src/smolagents/local_python_executor.py",
+        "line": 454,
+        "category": "other",
+        "except_type": "ContinueException"
+      },
+      {
+        "file": "src/smolagents/local_python_executor.py",
+        "line": 1049,
+        "category": "returns_a_value",
+        "except_type": "BreakException"
+      },
+      {
+        "file": "src/smolagents/local_python_executor.py",
+        "line": 1051,
+        "category": "other",
+        "except_type": "ContinueException"
+      },
+      {
+        "file": "src/smolagents/local_python_executor.py",
+        "line": 1262,
+        "category": "other",
+        "except_type": "Exception"
+      },
+      {
+        "file": "src/smolagents/models.py",
+        "line": 199,
+        "category": "returns_a_value",
+        "except_type": "Exception"
+      },
+      {
+        "file": "src/smolagents/remote_executors.py",
+        "line": 49,
+        "category": "swallows_with_pass",
+        "except_type": "ModuleNotFoundError"
+      },
+      {
+        "file": "src/smolagents/remote_executors.py",
+        "line": 446,
+        "category": "logs_only",
+        "except_type": "Exception"
+      },
+      {
+        "file": "src/smolagents/remote_executors.py",
+        "line": 703,
+        "category": "logs_only",
+        "except_type": "Exception"
+      },
+      {
+        "file": "src/smolagents/remote_executors.py",
+        "line": 1037,
+        "category": "returns_a_value",
+        "except_type": "Exception"
+      },
+      {
+        "file": "src/smolagents/remote_executors.py",
+        "line": 1058,
+        "category": "logs_only",
+        "except_type": "Exception"
+      },
+      {
+        "file": "src/smolagents/remote_executors.py",
+        "line": 1075,
+        "category": "swallows_with_pass",
+        "except_type": "Exception"
+      },
+      {
+        "file": "src/smolagents/remote_executors.py",
+        "line": 719,
+        "category": "logs_only",
+        "except_type": "requests.RequestException"
+      },
+      {
+        "file": "src/smolagents/remote_executors.py",
+        "line": 212,
+        "category": "swallows_with_pass",
+        "except_type": "ImportError"
+      },
+      {
+        "file": "src/smolagents/remote_executors.py",
+        "line": 241,
+        "category": "swallows_with_pass",
+        "except_type": "ImportError"
+      },
+      {
+        "file": "src/smolagents/remote_executors.py",
+        "line": 619,
+        "category": "other",
+        "except_type": "docker.errors.ImageNotFound"
+      },
+      {
+        "file": "src/smolagents/remote_executors.py",
+        "line": 271,
+        "category": "other",
+        "except_type": "SerializationError"
+      },
+      {
+        "file": "src/smolagents/remote_executors.py",
+        "line": 275,
+        "category": "returns_a_value",
+        "except_type": "(pickle.PicklingError, TypeError, AttributeError)"
+      },
+      {
+        "file": "src/smolagents/serialization.py",
+        "line": 71,
+        "category": "other",
+        "except_type": "(ImportError, AttributeError)"
+      },
+      {
+        "file": "src/smolagents/serialization.py",
+        "line": 195,
+        "category": "returns_a_value",
+        "except_type": "ImportError"
+      },
+      {
+        "file": "src/smolagents/serialization.py",
+        "line": 236,
+        "category": "returns_a_value",
+        "except_type": "ImportError"
+      },
+      {
+        "file": "src/smolagents/utils.py",
+        "line": 221,
+        "category": "swallows_with_pass",
+        "except_type": "SyntaxError"
+      },
+      {
+        "file": "src/smolagents/utils.py",
+        "line": 404,
+        "category": "other",
+        "except_type": "OSError"
+      },
+      {
+        "file": "src/smolagents/utils.py",
+        "line": 151,
+        "category": "swallows_with_pass",
+        "except_type": "json.JSONDecodeError"
+      }
+    ]
+  },
+  "finished_utc": "2026-10-04T03:29:41Z",
+  "summary": {
+    "criteria": 4,
+    "controls": 11,
+    "criteria_passed": 4,
+    "criteria_failed": [],
+    "broken_controls": [],
+    "false_alarms": 7,
+    "schema_self_test_passed": true
+  }
+}
