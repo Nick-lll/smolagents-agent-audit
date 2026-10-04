@@ -385,7 +385,16 @@ def check_policy_text() -> list[Problem]:
     require("README.md", "apache-2.0", "the licence it ships under")
     require("DISCLOSURE.md", "erratum", "the dispute-correction process")
     require("DISCLOSURE.md", "disputed", "a status for a disputed finding")
-    require("DISCLOSURE.md", "not been disclosed", "that nothing has been disclosed yet")
+    # This assertion previously required the words "not been disclosed": it was written
+    # while the repository was still unpublished, and once it was published the check pinned
+    # a statement that had become FALSE, which then blocked the correction from being
+    # published. A gate that enforces a falsehood is worse than no gate. It now asserts the
+    # facts that must hold *after* publication, so a regression back to the older, no-longer-
+    # true wording fails here.
+    require("DISCLOSURE.md", "published on", "the date the repository was published")
+    require("DISCLOSURE.md", "not filed as a vulnerability report", "the scope self-assessment")
+    require("DISCLOSURE.md", "ai assistance", "that AI assistance is disclosed")
+    require("DISCLOSURE.md", "@", "a contact address for corrections")
     require("DISCLOSURE.md", "timeline", "a disclosure timeline")
     require("REPRODUCE.md", "reproduction rate", "the measured reproduction rate")
     require("REPRODUCE.md", "pinned", "the pinned upstream revision")

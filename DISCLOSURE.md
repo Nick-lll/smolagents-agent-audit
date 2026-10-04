@@ -1,4 +1,4 @@
-# Responsible disclosure
+﻿# Responsible disclosure
 
 ## The short version
 
