@@ -19,22 +19,31 @@ finding's directory and updates the status there; see `../DISCLOSURE.md`.
 ## Layout
 
 ```
-briefs/    the finding documents: one per finding, plus the authored full report
-raw/       the recorded artifacts, copied verbatim, with PROVENANCE.md saying from where
-slots/     what is still missing, stated precisely rather than filled with invention
+briefs/          the finding documents: one per finding, plus the authored full report
+raw/             the recorded artifacts, copied verbatim, with PROVENANCE.md saying from where
+recertification/ re-runs of the same criteria at a later revision, when upstream moves
+slots/           what is still missing, stated precisely rather than filled with invention
 ```
 
 A finding is a `briefs/<F>.md` document plus the `raw/` artifact it quotes. Nothing is
 summarised into `briefs/` that `raw/` does not support.
 
+**Re-run status as of 2026-10-05:** the four findings were re-run in two separate clones of
+the audited project, under one interpreter, to test both the pinned revision and upstream's
+current `main` tip. Those turned out to be **the same commit** — `main` had not moved and was
+still `c30b115286e000e98711fae5e85993547b73d826`, the pin — so both runs are runs at the pin,
+all four stayed `reproduced`, and no status here changed. The record, with the two SHAs, the
+dates, the commands and the artifacts, is
+`recertification/RERUN_2026-10-05_latest_upstream_revision.md`.
+
 ## The findings
 
-| brief | claim in one line | status | evidence class |
-|---|---|---|---|
-| `briefs/F1_fallback_answer_swallows_a_model_failure.md` | when the endpoint dies on the call that produces the fallback answer, `run()` returns the error text **as the answer** instead of raising | `reproduced` | fully measured |
-| `briefs/F2_fallback_failure_reported_as_step_limit.md` | the returned `state` cannot distinguish "the step budget ran out" from "the model never answered"; both are `max_steps_error` | `reproduced` | measured; the step-limit label itself is intended behaviour |
-| `briefs/F3_empty_answer_reported_as_success.md` | a run that answers nothing returns `output=None` together with `state='success'` | `reproduced` | measured conjunction; the judgement that `None` is never a legitimate answer is a convention |
-| `briefs/F4_zero_step_budget_crashes.md` | `max_steps=0` raises `UnboundLocalError` naming an internal variable instead of producing the fallback answer | `reproduced` | measured crash; whether a zero budget is in contract is a design choice |
+| brief | claim in one line | status | re-run 2026-10-05 | evidence class |
+|---|---|---|---|---|
+| `briefs/F1_fallback_answer_swallows_a_model_failure.md` | when the endpoint dies on the call that produces the fallback answer, `run()` returns the error text **as the answer** instead of raising | `reproduced` | `reproduced` | fully measured |
+| `briefs/F2_fallback_failure_reported_as_step_limit.md` | the returned `state` cannot distinguish "the step budget ran out" from "the model never answered"; both are `max_steps_error` | `reproduced` | `reproduced` | measured; the step-limit label itself is intended behaviour |
+| `briefs/F3_empty_answer_reported_as_success.md` | a run that answers nothing returns `output=None` together with `state='success'` | `reproduced` | `reproduced` | measured conjunction; the judgement that `None` is never a legitimate answer is a convention |
+| `briefs/F4_zero_step_budget_crashes.md` | `max_steps=0` raises `UnboundLocalError` naming an internal variable instead of producing the fallback answer | `reproduced` | `reproduced` | measured crash; whether a zero budget is in contract is a design choice |
 
 Four claims, eleven controls, four reproduced, zero broken controls. Seven further candidate
 defects were examined with executable checks and **rejected**; they are listed in

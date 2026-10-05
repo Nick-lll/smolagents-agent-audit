@@ -1,14 +1,23 @@
-﻿# Responsible disclosure
+# Responsible disclosure
 
 ## The short version
 
-This repository was **published on 2026-10-04**, before its maintainer was notified. That
-order is a deviation from the stance stated below, and it is recorded here rather than
-quietly corrected: the intent was to notify first, the publication happened first, and the
-record says so.
+This repository was **published on 2026-10-04 at 08:37:13 −04:00 (12:37:13 UTC)**, before
+its maintainer was notified. That order is a deviation from the stance stated below, and it
+is recorded here rather than quietly corrected: the intent was to notify first, the
+publication happened first, and the record says so.
 
 No maintainer had been contacted and no issue had been opened at the moment of publication.
-The notification described under "Timeline" is being carried out now.
+The notification was sent **after** publication, on 2026-10-04 at 10:06 −04:00
+(14:06 UTC): see "Timeline" for the time, the recipient, the channel, and the hash of the
+body that was sent.
+
+**Correction, 2026-10-05.** The notice as sent said *"we are telling you first, because the
+repository is already public and you should hear it from us rather than from a search
+result."* The publication came first, so "telling you first" was not true, and the sentence is
+withdrawn here rather than left standing. What was true is narrower: the maintainer was told
+by us as well as by the repository. No email was sent to correct this — a second message would
+be noise — and the correction is kept here, where the disclosure record lives.
 
 ## Scope self-assessment: why this is not filed as a vulnerability report
 
@@ -29,8 +38,8 @@ policy**, and we are deliberately not filing them through the private vulnerabil
 Filing a report we expect to be closed as out-of-scope would spend a maintainer's time and
 teach them nothing. The honest alternative is what this repository does: **publish the
 reproduction, state the scope we think applies, and let the maintainer be the one who
-decides** — with a short private notice so they hear it from us first, not from a search
-result.
+decides** — with a short private notice to the maintainer, sent after publication, so that the
+maintainer is told by us and not only by a search result.
 
 This self-assessment is itself falsifiable and we invite correction: a maintainer who reads
 `SECURITY.md` differently should say so, and the finding's status will be updated as
@@ -65,15 +74,26 @@ described below.
 
 ## Timeline (actual, not planned)
 
-| date | action |
+Times are given with their UTC offset; the local clock at the time of these events was
+−04:00, so `−04:00` and UTC are both stated wherever a clock time matters. A date on its own
+was not enough to check the order of the events below, so the clock times are recorded here.
+
+| date and time | action |
 |---|---|
 | 2026-10-04 | audit completed against the pinned revision; artifacts recorded |
-| 2026-10-04 | **repository published** |
-| 2026-10-04 | this file corrected to state the publication; scope self-assessment added |
-| 2026-10-04 | short private notice sent to the maintainer (no vulnerability claim, no demand) |
-| +7 days | if no reply, a single reminder is sent; no second reminder follows |
-| +14 days | any reply from the maintainer is published next to the findings, as given |
+| 2026-10-04 08:37:13 −04:00 / 12:37:13 UTC | **repository published** — initial commit `48c6aa1af7`, remote `https://github.com/Nick-lll/smolagents-agent-audit` |
+| 2026-10-04 09:33:49 −04:00 / 13:33:49 UTC | this file corrected to state the publication; scope self-assessment added (`4ab8141`) |
+| 2026-10-04 09:36:10 −04:00 / 13:36:10 UTC | a verifier note that had become false is itself corrected; remote HEAD becomes `3f4e6080` |
+| 2026-10-04 10:06 −04:00 / 14:06 UTC *(the send time is as reported by the sender; it was not observed by the tooling that recorded the other times in this table)* | **short private notice sent**, by email, from `nickchen791@gmail.com` to **`security@huggingface.co`** — the address `huggingface/smolagents`'s own `SECURITY.md` names for private reporting. No vulnerability claim, no demand, no attachment. Body verbatim: 1138 bytes, UTF-8, LF line endings only, SHA-256 `608e25c846a6f6dbc61785bacef178629f55e5579d9f481f6bd6ba8c13e6f256` |
+| 2026-10-05 | all four findings re-run in a fresh clone of the audited project and in the recorded environment; the pinned commit `c30b1152` turned out to be upstream's current `main` tip, so all four still `reproduced` at the latest upstream revision. Record: `findings/recertification/RERUN_2026-10-05_latest_upstream_revision.md` |
+| +7 days after the notice | if no reply, a single reminder is sent; no second reminder follows |
+| +14 days after the notice | any reply from the maintainer is published next to the findings, as given |
 | onward | any further correspondence is answered on the publication itself, as a dated erratum |
+
+**The order is publication, then notification.** The notice went out 1 hour 29 minutes after
+the repository became public, to the address `SECURITY.md` publishes, and it said so itself
+("the repository is already public"). Nothing in this file should be read as a claim that the
+maintainer was given advance notice, a private window, or priority of any kind: they were not.
 
 The window is short because nothing here is remotely exploitable and nothing here concerns a
 live service: every finding is a local, offline, already-public behaviour of a pinned

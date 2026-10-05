@@ -26,6 +26,15 @@ plus the package under test. Measured versions at the time of the recorded run a
 | `huggingface/smolagents` | `c30b115286e000e98711fae5e85993547b73d826` | 2026-09-30T07:07:22+02:00 | `v1.0.0-936-gc30b115` |
 | `crewAIInc/crewAI` (cloned, set aside, not audited) | `738c8e19e35c2888d8e0663bc5cc45c5acf6ac2d` | — | — |
 
+**This pin was still upstream's tip on 2026-10-05.** `git ls-remote --symref
+https://github.com/huggingface/smolagents HEAD` resolves to `refs/heads/main` at
+`c30b115286e000e98711fae5e85993547b73d826`, so the revision audited here is the latest upstream
+revision as of that date and the four findings were re-verified there rather than only assumed
+to hold; the record is `findings/recertification/RERUN_2026-10-05_latest_upstream_revision.md`.
+The latest released tag is `v1.26.0` (`12c1bc8`, 2026-05-29), which is **not** an ancestor of
+`main` and is older than this pin, so it was deliberately not audited. If upstream moves, this
+pin becomes a historical revision and the recorded artifacts describe it and nothing later.
+
 `crewAI` was cloned while choosing a target and then set aside, because every crew or flow
 run needs a live LLM provider and stubbing enough to avoid that would stop the audited path
 from being the real one. Nothing in this repository claims anything about `crewAI`.
